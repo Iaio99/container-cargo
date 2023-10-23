@@ -12,26 +12,26 @@ if __name__ == "__main__":
     else:
         config = parser.ConfigManager("../config.ini")
 
-    export_dir = config.get_export_dir()
+    export_dir = config.export_dir()
 
-    logger = logging.Logger(config.get_log_filename())
+    logger = logging.Logger(config.log_filename())
     notifier_factory = notification.NotifierFactory()
-    notifier = notifier_factory.create_notifier(config.get_notify_via(),
-                                                **config.get_notifier_options())
+    notifier = notifier_factory.create_notifier(config.notify_via(),
+                                                **config.notifier_options())
 
     notifier.send_notification("Exporting containers...")
 
-    if config.get_lxc():
+    if config.lxc():
         lxc_exporter = lxc.LxcExporter(export_dir)
         lxc_exporter.export_containers(logger)
         notifier.send_notification("LXC container exported with success!")
 
-    if docker_compose_directory := config.get_docker_compose_directory():
+    if docker_compose_directory := config.docker_compose_directory():
         docker_compose_exporter = docker.DockerComposeExporter(export_dir, docker_compose_directory)
         docker_compose_exporter.export_containers(logger)
         notifier.send_notification("Docker compose exported with success!")
 
-    if rclone_remote := config.get_rclone_remote():
+    if rclone_remote := config.rclone_remote():
         syncing.rclone_sync(rclone_remote, export_dir, logger)
         notifier.send_notification("Sync complete!")
 

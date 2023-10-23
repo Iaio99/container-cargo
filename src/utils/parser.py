@@ -59,31 +59,38 @@ class ConfigManager:
             print(f"ERROR: {exception_message}")
             sys.exit(-1)
 
-    def get_lxc(self):
+    @property
+    def lxc(self):
         """DOC"""
         return self._lxc
 
-    def get_docker_compose_directory(self):
+    @property
+    def docker_compose_directory(self):
         """DOC"""
         return self._docker_compose_dir
 
-    def get_log_filename(self):
+    @property
+    def log_filename(self):
         """DOC"""
         return self._log_filename
 
-    def get_export_dir(self):
+    @property
+    def export_dir(self):
         """DOC"""
         return self._export_dir
 
-    def get_rclone_remote(self):
+    @property
+    def rclone_remote(self):
         """DOC"""
         return self._rclone_remote
 
-    def get_notify_via(self):
+    @property
+    def notify_via(self):
         """DOC"""
         return self._notify_via
 
-    def get_notifier_options(self):
+    @property
+    def notifier_options(self):
         """DOC"""
         if self._notify_via == "telegram":
             return self._telegram_options
