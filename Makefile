@@ -1,4 +1,4 @@
-TARGET=pippo
+TARGET=container-cargo
 BUILD_FLAGS=-y -F --log-level=WARN
 
 all: build
