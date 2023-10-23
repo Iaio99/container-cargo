@@ -16,8 +16,9 @@ class LxcExporter(Exporter):
         self._export_dir = export_dir
 
     def export_containers(self, logger: logging.Logger):
+        """DOC"""
         try:
-            os.makedirs(self._export_dir+"/LXC", exist_ok=True)
+            os.makedirs(f"{self._export_dir}/LXC", exist_ok=True)
         except FileExistsError:
             pass
 

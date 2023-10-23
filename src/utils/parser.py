@@ -84,7 +84,7 @@ class ConfigManager:
         return self._notify_via
 
     def get_notifier_options(self):
-        "DOC"
+        """DOC"""
         if self._notify_via == "telegram":
             return self._telegram_options
         elif self._notify_via == "mail":

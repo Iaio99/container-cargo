@@ -10,7 +10,7 @@ import requests
 
 
 class Notifier(ABC):
-    "DOC"
+    """DOC"""
     def __init__(self):
         pass
 
@@ -20,9 +20,9 @@ class Notifier(ABC):
 
 
 class NotifierFactory:
-    "DOC"
+    """DOC"""
     def create_notifier(self, extern, **kwargs):
-        "DOC"
+        """DOC"""
         if extern == "telegram":
             chat_id = kwargs.get("chat_id")
             token = kwargs.get("token")
@@ -40,7 +40,7 @@ class NotifierFactory:
 
 
 class TelegramNotifier(Notifier):
-    "DOC"
+    """DOC"""
     def __init__(self, chat_id, token):
         self._token = token
         self._chat_id = chat_id
@@ -54,7 +54,7 @@ class TelegramNotifier(Notifier):
 
 
 class EmailNotifier(Notifier):
-    "DOC"
+    """DOC"""
     def __init__(self, sender, password, smtp_server, port=465, receiver=None):
         self._sender = sender
         self._password = password
@@ -67,7 +67,7 @@ class EmailNotifier(Notifier):
             self._receiver = receiver
 
     def send_notification(self, msg):
-        "DOC"
+        """DOC"""
         context = ssl.create_default_context()
 
         if self._port == 465:
