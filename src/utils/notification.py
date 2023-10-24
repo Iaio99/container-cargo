@@ -8,12 +8,7 @@ from abc import ABC, abstractmethod
 
 import requests
 
-
 class Notifier(ABC):
-    """DOC"""
-    def __init__(self):
-        pass
-
     @abstractmethod
     def send_notification(self, msg):
         """DOC"""
