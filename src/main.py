@@ -35,7 +35,11 @@ if __name__ == "__main__":
         syncing.rclone_sync(rclone_remote, export_dir, logger)
         notifier.send_notification("Sync complete!")
 
-    if borg_user := config.borg_user() and borg_host := config.borg_host() and borg_repo := config.borg_repo():
+    borg_user = config.borg_user()
+    borg_host = config.borg_host()
+    borg_repo = config.borg_repo()
+
+    if borg_user and borg_host and borg_repo:
         syncing.borg_sync(borg_user, borg_host, borg_repo, export_dir, logger)
         notifier.send_notification("Sync complete!")
 
