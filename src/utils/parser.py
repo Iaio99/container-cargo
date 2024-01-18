@@ -50,14 +50,19 @@ class ConfigManager:
         try:
             self._docker_compose_dir = config.get('Containers', 'DOCKER_COMPOSE_DIR')
             self._lxc = config.getboolean('Containers', 'LXC')
-            self._rclone_remote = config.get('Drive', 'RCLONE_REMOTE')
         except configparser.NoOptionError:
             self._docker_compose_dir = None
             self._lxc = False
-            self._rclone_remote = None
         except configparser.NoSectionError as exception_message:
             print(f"ERROR: {exception_message}")
             sys.exit(-1)
+
+        try:
+            self._rclone_remote = config.get('Drive', 'RCLONE_REMOTE')
+        except configparser.NoOptionError or configparser.NoSectionError:
+            self._borg_user = config.get('Borg', 'BORG_USER')
+            self._borg_host = config.get('Borg', 'BORG_HOST')
+            self._borg_repo = config.get('Borg', 'BORG_REPO')
 
     @property
     def lxc(self):
@@ -96,3 +101,15 @@ class ConfigManager:
             return self._telegram_options
         elif self._notify_via == "mail":
             return self._mail_options
+
+    @property
+    def borg_user(self):
+        return self._borg_user
+    
+    @property
+    def borg_host(self):
+        return self._borg_host
+
+    @property
+    def borg_repo(self):
+        return self._borg_repo
