@@ -10,7 +10,7 @@ if __name__ == "__main__":
         print("ERROR: File /etc/container-cargo/config.ini not found")
         sys.exit(-1)
     else:
-        config = parser.ConfigManager("../config.ini")
+        config = parser.ConfigManager("/etc/container-cargo/config.ini")
 
     export_dir = config.export_dir
 
