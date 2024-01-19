@@ -31,7 +31,7 @@ if __name__ == "__main__":
         docker_compose_exporter.export_containers(logger)
         notifier.send_notification("Docker compose exported with success!")
 
-    if rclone_remote := config.rclone_remote():
+    if rclone_remote := config.rclone_remote:
         syncing.rclone_sync(rclone_remote, export_dir, logger)
         notifier.send_notification("Sync complete!")
 
