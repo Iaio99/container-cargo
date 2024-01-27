@@ -39,9 +39,10 @@ if __name__ == "__main__":
         borg_user = config.borg_user
         borg_host = config.borg_host
         borg_repo = config.borg_repo
+        path_ssh_key = config.path_ssh_key
 
         if borg_user and borg_host and borg_repo:
-            syncing.borg_sync(borg_user, borg_host, borg_repo, export_dir, logger)
+            syncing.borg_sync(borg_user, borg_host, borg_repo, path_ssh_key, export_dir, logger)
             notifier.send_notification("Sync complete!")
 
     notifier.send_notification("Export finished with no errors!")

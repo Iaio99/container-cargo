@@ -70,6 +70,10 @@ class ConfigManager:
             self._borg_user = None
             self._borg_host = None
             self._borg_repo = None
+        try:
+            self._path_ssh_key = config.get('Borg', 'PATH_SSH_KEY')
+        except (configparser.NoOptionError, configparser.NoSectionError):
+            self._path_ssh_key = None
 
     @property
     def lxc(self):
@@ -120,3 +124,7 @@ class ConfigManager:
     @property
     def borg_repo(self):
         return self._borg_repo
+
+    @property
+    def path_ssh_key(self):
+        return self._path_ssh_key
