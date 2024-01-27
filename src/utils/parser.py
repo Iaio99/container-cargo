@@ -59,10 +59,17 @@ class ConfigManager:
 
         try:
             self._rclone_remote = config.get('Drive', 'RCLONE_REMOTE')
-        except configparser.NoOptionError or configparser.NoSectionError:
+        except (configparser.NoOptionError, configparser.NoSectionError):
+            self._rclone_remote = None
+        
+        try:
             self._borg_user = config.get('Borg', 'BORG_USER')
             self._borg_host = config.get('Borg', 'BORG_HOST')
             self._borg_repo = config.get('Borg', 'BORG_REPO')
+        except (configparser.NoOptionError, configparser.NoSectionError):
+            self._borg_user = None
+            self._borg_host = None
+            self._borg_repo = None
 
     @property
     def lxc(self):
