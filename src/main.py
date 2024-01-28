@@ -2,7 +2,7 @@
 import os
 import sys
 
-from export import docker, lxd
+from export import docker, lxd, incus
 from utils import logging, notification, parser, syncing
 
 if __name__ == "__main__":
