@@ -49,11 +49,23 @@ class ConfigManager:
 
         try:
             self._docker_compose_dir = config.get('Containers', 'DOCKER_COMPOSE_DIR')
-            self._lxd = config.getboolean('Containers', 'LXD')
-            self._incus = config.getboolean('Containers', 'Incus')
         except configparser.NoOptionError:
             self._docker_compose_dir = None
+        except configparser.NoSectionError as exception_message:
+            print(f"ERROR: {exception_message}")
+            sys.exit(-1)
+
+        try:
+            self._lxd = config.getboolean('Containers', 'LXD')
+        except configparser.NoOptionError:
             self._lxd = False
+        except configparser.NoSectionError as exception_message:
+            print(f"ERROR: {exception_message}")
+            sys.exit(-1)
+
+        try:
+            self._incus = config.getboolean('Containers', 'INCUS')
+        except configparser.NoOptionError:
             self._incus = False
         except configparser.NoSectionError as exception_message:
             print(f"ERROR: {exception_message}")
