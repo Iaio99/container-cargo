@@ -2,7 +2,7 @@
 import os
 import sys
 
-from export import docker, lxc
+from export import docker, lxd
 from utils import logging, notification, parser, syncing
 
 if __name__ == "__main__":
@@ -24,10 +24,10 @@ if __name__ == "__main__":
 
     notifier.send_notification("Exporting containers...")
 
-    if config.lxc:
-        lxc_exporter = lxc.LxcExporter(export_dir)
-        lxc_exporter.export_containers(logger)
-        notifier.send_notification("LXC container exported with success!")
+    if config.lxd:
+        lxd_exporter = lxd.LxdExporter(export_dir)
+        lxd_exporter.export_containers(logger)
+        notifier.send_notification("LXD container exported with success!")
 
     if docker_compose_directory := config.docker_compose_directory:
         docker_compose_exporter = docker.DockerComposeExporter(export_dir, docker_compose_directory)

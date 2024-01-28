@@ -49,10 +49,10 @@ class ConfigManager:
 
         try:
             self._docker_compose_dir = config.get('Containers', 'DOCKER_COMPOSE_DIR')
-            self._lxc = config.getboolean('Containers', 'LXC')
+            self._lxd = config.getboolean('Containers', 'LXD')
         except configparser.NoOptionError:
             self._docker_compose_dir = None
-            self._lxc = False
+            self._lxd = False
         except configparser.NoSectionError as exception_message:
             print(f"ERROR: {exception_message}")
             sys.exit(-1)
@@ -76,9 +76,9 @@ class ConfigManager:
             self._path_ssh_key = None
 
     @property
-    def lxc(self):
+    def lxd(self):
         """DOC"""
-        return self._lxc
+        return self._lxd
 
     @property
     def docker_compose_directory(self):
