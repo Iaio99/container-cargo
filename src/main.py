@@ -14,6 +14,9 @@ if __name__ == "__main__":
 
     export_dir = config.export_dir
 
+    if not os.path.exists(export_dir):
+        os.mkdir(export_dir)
+
     logger = logging.Logger(config.log_filename)
     notifier_factory = notification.NotifierFactory()
     notifier = notifier_factory.create_notifier(config.notify_via,
