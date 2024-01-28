@@ -29,6 +29,11 @@ if __name__ == "__main__":
         lxd_exporter.export_containers(logger)
         notifier.send_notification("LXD container exported with success!")
 
+    if config.incus:
+        incus_exporter = incus.IncusExporter(export_dir)
+        incus_exporter.export_containers(logger)
+        notifier.send_notification("Incus container exported with success!")
+
     if docker_compose_directory := config.docker_compose_directory:
         docker_compose_exporter = docker.DockerComposeExporter(export_dir, docker_compose_directory)
         docker_compose_exporter.export_containers(logger)

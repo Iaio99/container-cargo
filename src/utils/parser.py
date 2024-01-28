@@ -50,9 +50,11 @@ class ConfigManager:
         try:
             self._docker_compose_dir = config.get('Containers', 'DOCKER_COMPOSE_DIR')
             self._lxd = config.getboolean('Containers', 'LXD')
+            self._incus = config.getboolean('Containers', 'Incus')
         except configparser.NoOptionError:
             self._docker_compose_dir = None
             self._lxd = False
+            self._incus = False
         except configparser.NoSectionError as exception_message:
             print(f"ERROR: {exception_message}")
             sys.exit(-1)
@@ -79,6 +81,11 @@ class ConfigManager:
     def lxd(self):
         """DOC"""
         return self._lxd
+
+    @property
+    def incus(self):
+        """DOC"""
+        return self._incus
 
     @property
     def docker_compose_directory(self):
