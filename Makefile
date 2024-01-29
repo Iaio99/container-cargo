@@ -8,13 +8,13 @@ build: clean
 	PYTHONOPTIMIZE=2 pyinstaller --paths $(PYTHONPATH) src/main.py $(BUILD_FLAGS) -n $(TARGET)
 
 install:
-	sudo mv ./dist/${TARGET} /usr/local/bin
-	sudo mkdir -p /etc/${TARGET}
-	sudo touch config.ini /etc/${TARGET}
+	mv ./dist/${TARGET} /usr/local/bin
+	mkdir -p /etc/${TARGET}
+	touch config.ini /etc/${TARGET}
 
 uninstall:
-	sudo rm -rf /usr/local/bin/$(TARGET)
-	sudo rm -rf /etc/${TARGET}
+	rm -rf /usr/local/bin/$(TARGET)
+	rm -rf /etc/${TARGET}
 
 clean:
 	rm -rf build
