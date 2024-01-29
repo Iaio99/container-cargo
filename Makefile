@@ -10,7 +10,7 @@ build: clean
 install: build
 	sudo mv ./dist/${TARGET} /usr/local/bin
 	sudo mkdir -p /etc/${TARGET}
-	sudo cp -n config.ini /etc/${TARGET}
+	sudo touch config.ini /etc/${TARGET}
 
 uninstall:
 	sudo rm -rf /usr/local/bin/$(TARGET)
