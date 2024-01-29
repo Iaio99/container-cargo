@@ -3,7 +3,7 @@ import os
 import sys
 
 from export import docker, lxd, incus
-from utils import logging, notification, parser, syncing
+from utils import logging, notification, parser, syncing, remove_exported_containers
 
 if __name__ == "__main__":
     if not os.path.exists("/etc/container-cargo/config.ini"):
@@ -55,3 +55,4 @@ if __name__ == "__main__":
 
     notifier.send_notification("Export finished with no errors!")
     logger.close_log()
+    remove_exported_containers(export_dir)
