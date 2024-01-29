@@ -7,7 +7,7 @@ all: build
 build: clean
 	PYTHONOPTIMIZE=2 pyinstaller --paths $(PYTHONPATH) src/main.py $(BUILD_FLAGS) -n $(TARGET)
 
-install: build
+install:
 	sudo mv ./dist/${TARGET} /usr/local/bin
 	sudo mkdir -p /etc/${TARGET}
 	sudo touch config.ini /etc/${TARGET}
